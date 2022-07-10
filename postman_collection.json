@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "d68e4bb1-d63b-4db4-ab26-2e6ff359e91a",
+		"name": "Artists",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllByGenre",
+			"item": [
+				{
+					"name": "Genre - POP",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/artists/genre/pop",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"artists",
+								"genre",
+								"pop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Not Found",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/artists/genre/test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"artists",
+								"genre",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Heavy Metal Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/artists/genre/heavy%20metal",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"artists",
+								"genre",
+								"heavy%20metal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Count tracks",
+			"item": [
+				{
+					"name": "Count Tracks with Artists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/tracks/count-with-artists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tracks",
+								"count-with-artists"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Albums",
+			"item": [
+				{
+					"name": "GetAllByArtist - Metric",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/albums/artist/metric",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"albums",
+								"artist",
+								"metric"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllByArtist - Halestorm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/albums/artist/halestorm",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"albums",
+								"artist",
+								"halestorm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllByArtist - Shinedown",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/albums/artist/shinedown",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"albums",
+								"artist",
+								"shinedown"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllByArtist - Not Found",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/albums/artist/test",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"albums",
+								"artist",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

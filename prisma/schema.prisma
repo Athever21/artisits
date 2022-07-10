@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Artist {
+  uuid   String  @id @default(uuid()) @db.VarChar(36)
+  name   String  @db.VarChar(120)
+  albums Album[]
+
+  @@map("artists")
+}
+
+model Album {
+  uuid       String  @id @default(uuid()) @db.VarChar(36)
+  title      String  @db.VarChar(160)
+  Artist     Artist? @relation(fields: [artistUuid], references: [uuid])
+  artistUuid String? @db.VarChar(36)
+  tracks     Track[]
+
+  @@map("albums")
+}
+
+model Genre {
+  uuid   String  @id @default(uuid()) @db.VarChar(36)
+  name   String  @db.VarChar(120)
+  tracks Track[]
+
+  @@map("genres")
+}
+
+model Track {
+  uuid String @id @default(uuid()) @db.VarChar(36)
+
+  name String @db.VarChar(200)
+
+  Genre     Genre?  @relation(fields: [genreUuid], references: [uuid])
+  genreUuid String? @db.VarChar(36)
+
+  Album     Album?  @relation(fields: [albumUuid], references: [uuid])
+  albumUuid String? @db.VarChar(36)
+
+  @@map("tracks")
+}

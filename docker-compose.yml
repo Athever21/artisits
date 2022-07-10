@@ -1,0 +1,46 @@
+version: "3"
+services:
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes: 
+      - cache:/data
+  postgres:
+    image: postgres:13
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports: 
+      - 5432:5432
+  app:
+    depends_on:
+      - postgres
+      - cache
+    restart: unless-stopped
+    build: 
+      context: .
+      dockerfile: "./Dockerfile"
+    ports:
+      - 3001:3001
+    volumes:
+      - ".:/app:delegated"
+      - /app/node_modules
+    environment:
+      HOST: 0.0.0.0
+      CHOKIDAR_USEPOLLING: "true"
+      REDIS_HOST: cache
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+      DATABASE_URI: postgresql://root:root@postgres:5432/artists
+    working_dir: /app
+    command: bash -c "yarn & yarn dev"
+volumes:
+  postgres:
+  cache:
+    driver: local
